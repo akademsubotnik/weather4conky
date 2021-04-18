@@ -9,7 +9,7 @@ defaultLocation="703447"
 
 Conky="False"
 Terminal="False"
-HTML="False"
+
 degreeCharacter="c"
 data=0
 lastUpdateTime=0
@@ -209,24 +209,7 @@ while true; do
         done
         fi
 
-        if [ "$HTML" = "True" ];then
-            echo "Forecast for $Station as of: $AsOf  <br  />"
-            let i=0
-            while [ $i -lt 40 ]; do
-                CastDate=$(date +"%s" -d @${NixDate[$i]})
-                if [ $CastDate -le $TomorrowDate ]; then
-                    ShortDate=$(date +"%m/%d@%R" -d @${NixDate[$i]})
-                    printf "%-12s %-2s%-20s %-15s %-14s %-14s %-14s<br  />\n" "$ShortDate:" "${icon[$i]} " "${LongWeather[$i]}" "Temp:${temperature[$i]}°${degreeCharacter^^}" "Wind:${WindSpeed[$i]}$windunit" "Humidity:${Humidity[$i]}%" "Cloud Cover:${CloudCover[$i]}%"
-                else
-                    CastHour=$(date +"%-H" -d @${NixDate[$i]})
-                    if [ $CastHour -ge $NowHigh ] && [ $CastHour -le $NowLow ]; then
-                        ShortDate=$(date +"%m/%d@%R" -d @${NixDate[$i]})
-                        printf "%-12s %-2s%-20s %-15s %-14s %-14s %-14s<br  />\n" "$ShortDate:" "${icon[$i]} " "${LongWeather[$i]}" "Temp:${temperature[$i]}°${degreeCharacter^^}" "Wind:${WindSpeed[$i]}$windunit" "Humidity:${Humidity[$i]}%" "Cloud Cover:${CloudCover[$i]}%"
-                    fi
-                fi
-                i=$((i + 1))
-            done
-        fi
+
     if [ $dynamicUpdates -eq 0 ];then
         break
     fi
