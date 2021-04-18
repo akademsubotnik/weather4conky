@@ -4,7 +4,7 @@
 # Setting Defaults
 ########################################################################
 
-apiKey="c4d3d5b684b507cc18a434305d02b8ea"
+apiKey="secret"
 defaultLocation="703447"
 
 Conky="False"
