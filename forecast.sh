@@ -4,7 +4,7 @@
 # Setting Defaults
 ########################################################################
 
-apiKey="c4d3d5b684b507cc18a434305d02b8ea"
+apiKey="secret"
 defaultLocation="703447"
 
 Conky="False"
@@ -17,7 +17,7 @@ FeelsLike=0
 dynamicUpdates=0
 UseIcons="True"
 colors="True"
-temp="True"
+
 source "$HOME/.bashcolors"
 
 ########################################################################
@@ -60,11 +60,8 @@ lastUpdateTime=$(($(date +%s) -600))
 while true; do
     lastfileupdate=$(date -r $dataPath +%s)
     if [ $(($(date +%s)-$lastfileupdate)) -ge 600 ];then
-        if [ "$CityID" = "True" ];then
-            data=$(curl -s "http://api.openweathermap.org/data/2.5/forecast?id=$defaultLocation&units=metric&appid=$apiKey")
-        else
-            data=$(curl -s "http://api.openweathermap.org/data/2.5/forecast?q=$defaultLocation&units=metric&appid=$apiKey")
-        fi
+        data=$(curl -s "http://api.openweathermap.org/data/2.5/forecast?id=$defaultLocation&units=metric&appid=$apiKey")
+
         echo $data > $dataPath
     else
         if [ "$Conky" != "True" ];then
