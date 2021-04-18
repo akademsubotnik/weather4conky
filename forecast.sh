@@ -4,8 +4,8 @@
 # Setting Defaults
 ########################################################################
 
-apiKey="secret"
-defaultLocation="703448"
+apiKey="c4d3d5b684b507cc18a434305d02b8ea"
+defaultLocation="703447"
 OpenBox="False"
 Conky="False"
 Terminal="False"
@@ -17,7 +17,6 @@ FeelsLike=0
 dynamicUpdates=0
 UseIcons="True"
 colors="True"
-
 temp="True"
 source "$HOME/.bashcolors"
 
@@ -42,11 +41,7 @@ fi
 
 if [ ! -e $dataPath ];then
     touch $dataPath
-    if [ "$CityID" = "True" ];then
-        data=$(curl -s "http://api.openweathermap.org/data/2.5/forecast?id=$defaultLocation&units=metric&appid=$apiKey")
-    else
-        data=$(curl -s "http://api.openweathermap.org/data/2.5/forecast?q=$defaultLocation&units=metric&appid=$apiKey")
-    fi
+    data=$(curl -s "http://api.openweathermap.org/data/2.5/forecast?id=$defaultLocation&units=metric&appid=$apiKey")
 
     echo $data > $dataPath
 else
@@ -151,13 +146,9 @@ while true; do
     NowHour=$(date +"%-H")
     NowLow=$((NowHour + 1))
     NowHigh=$((NowHour - 1))
-    if [ "$OpenBox" = "False" ];then
-        if [ "$HTML" = "False" ];then
-            if [ "$Conky" = "False" ];then
-                Terminal="True"
-            fi
-        fi
-    fi
+
+    Terminal="True"
+
     if [ "$Conky" = "True" ]; then
         if [ "$colors" = "True" ]; then
             let i=0
