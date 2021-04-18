@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# TODO: Add in sunrise/sunset calcuations
-
 ########################################################################
 # Setting Defaults
 ########################################################################
@@ -87,9 +85,6 @@ while true; do
         # Location Data
         ########################################################################
         Station=$(echo $data | jq -r .city.name)
-        #Lat=$(echo $data | jq -r .coord.lat)
-        #Long=$(echo $data | jq -r .coord.lon)
-        #Country=$(echo $data | jq -r .sys.country)
         NumEntries=$(echo $data |jq -r .cnt)
         let i=0
 
