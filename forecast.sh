@@ -26,17 +26,8 @@ colors="True"
 
 
     temp="True"
-    if [ "$temp" = "True" ];then
-        if [ -f "$HOME/.bashcolors" ];then
-            source "$HOME/.bashcolors"
-            colors="True"
-        else
-            colors=""
-        fi
-    else
-        colors=""
-    fi
-
+    source "$HOME/.bashcolors"
+    
 ########################################################################
 # Reading in options
 ########################################################################
