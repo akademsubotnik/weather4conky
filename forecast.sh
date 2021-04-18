@@ -4,12 +4,10 @@
 # Setting Defaults
 ########################################################################
 
-apiKey="secret"
+apiKey="c4d3d5b684b507cc18a434305d02b8ea"
 defaultLocation="703447"
-
 Conky="False"
 Terminal="False"
-
 degreeCharacter="c"
 data=0
 lastUpdateTime=0
@@ -137,7 +135,6 @@ while true; do
         done
     fi
 
-
     AsOf=$(date +"%Y-%m-%d %R" -d @$lastfileupdate)
     TomorrowDate=$(date -d '+1 day' +"%s")
     NowHour=$(date +"%-H")
@@ -158,17 +155,7 @@ while true; do
                 fi
                 i=$((i + 1))
             done
-        else
-            let i=0
-            bob=""
-            while [ $i -lt 5 ]; do
-                CastDate=$(date +"%s" -d @${NixDate[$i]})
-                if [ $CastDate -le $TomorrowDate ]; then
-                    ShortDate=$(date +"%R" -d @${NixDate[$i]})
-                    bob=$(printf "%s %-5s %-6s %-4s |" "$bob" "$ShortDate:" "${ShortWeather[$i]}" "${temperature[$i]}°${degreeCharacter^^}")
-                fi
-                i=$((i + 1))
-            done
+
         fi
 
         #bob=$(echo "$icon $ShortWeather $temperature°${degreeCharacter^^}")
@@ -205,7 +192,6 @@ while true; do
             i=$((i + 1))
         done
         fi
-
 
     if [ $dynamicUpdates -eq 0 ];then
         break
