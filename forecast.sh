@@ -27,42 +27,6 @@ source "$HOME/.bashcolors"
 # Reading in options
 ########################################################################
 
-while [ $# -gt 0 ]; do
-option="$1"
-    case $option
-    in
-    -k) apiKey="$2"
-    shift
-    shift ;;
-    -l) defaultLocation="$2"
-    shift
-    shift ;;
-    -d) dynamicUpdates=1
-    shift ;;
-    -t) Terminal="True"
-    shift ;;
-    -h) HTML="True"
-    shift ;;
-    -o) OpenBox="True"
-    shift ;;
-    -y) Conky="True"
-    shift ;;
-    -f) degreeCharacter="f"
-    shift ;;
-    -n) UseIcons="False"
-    shift ;;
-    -p) CachePath="$2"
-    shift
-    shift ;;
-    -c)
-        if [ -f "$HOME/.bashcolors" ];then
-            source "$HOME/.bashcolors"
-            colors="True"
-        fi
-    shift ;;
-    esac
-done
-
 if [ -z $apiKey ];then
     echo "No API Key specified in rc, script, or command line."
     exit
