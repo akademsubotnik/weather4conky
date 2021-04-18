@@ -4,10 +4,10 @@
 # Setting Defaults
 ########################################################################
 
-apiKey="c4d3d5b684b507cc18a434305d02b8ea"
+apiKey="secret"
 defaultLocation="703447"
-Conky="False"
-Terminal="False"
+Conky="True"
+Terminal="True"
 degreeCharacter="c"
 data=0
 lastUpdateTime=0
@@ -140,8 +140,6 @@ while true; do
     NowHour=$(date +"%-H")
     NowLow=$((NowHour + 1))
     NowHigh=$((NowHour - 1))
-
-    Terminal="True"
 
     if [ "$Conky" = "True" ]; then
         if [ "$colors" = "True" ]; then
