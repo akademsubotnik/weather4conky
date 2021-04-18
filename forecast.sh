@@ -23,15 +23,9 @@ colors="True"
 ########################################################################
 # Reading in rc
 ########################################################################
-:'
 
-if [ -f "$ConfigFile" ];then
-    readarray -t line < "$ConfigFile"
-    apiKey=${line[0]}
-    defaultLocation=${line[1]}
-    degreeCharacter=${line[2]}
-    UseIcons=${line[3]}
-    temp=${line[4]}
+
+    temp="True"
     if [ "$temp" = "True" ];then
         if [ -f "$HOME/.bashcolors" ];then
             source "$HOME/.bashcolors"
@@ -42,8 +36,7 @@ if [ -f "$ConfigFile" ];then
     else
         colors=""
     fi
-fi
-'
+
 ########################################################################
 # Reading in options
 ########################################################################
