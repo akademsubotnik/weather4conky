@@ -4,7 +4,7 @@
 # Setting Defaults
 ########################################################################
 
-apiKey="secret"
+apiKey="c4d3d5b684b507cc18a434305d02b8ea"
 defaultLocation="703447"
 Conky="True"
 Terminal="True"
@@ -17,10 +17,6 @@ UseIcons="True"
 colors="True"
 
 source "$HOME/.bashcolors"
-
-########################################################################
-# Reading in options
-########################################################################
 
 if [ -z $apiKey ];then
     echo "No API Key specified in rc, script, or command line."
@@ -161,11 +157,7 @@ while true; do
         echo "$bob"
     fi
     if [ "$Terminal" = "True" ];then
-        if [ "$colors" = "True" ]; then
-            echo "Forecast for $Station as of: ${YELLOW}$AsOf${RESTORE} "
-        else
-            echo "Forecast for $Station as of: $AsOf "
-        fi
+        echo "Forecast for $Station as of: ${YELLOW}$AsOf${RESTORE} "
         let i=0
         while [ $i -lt 40 ]; do
             CastDate=$(date +"%s" -d @${NixDate[$i]})
