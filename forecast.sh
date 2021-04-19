@@ -4,10 +4,10 @@
 # Setting Defaults
 ########################################################################
 
-apiKey="c4d3d5b684b507cc18a434305d02b8ea"
+apiKey=""
 defaultLocation="703447"
 Conky="True"
-Terminal="True"
+Terminal="False"
 degreeCharacter="c"
 data=0
 lastUpdateTime=0
