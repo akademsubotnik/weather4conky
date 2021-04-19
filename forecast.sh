@@ -124,13 +124,14 @@ while true; do
     if [ "$Conky" = "True" ]; then
             let i=0
             bob=""
-            while [ $i -lt 5 ]; do
+            while [ $i -lt 40 ]; do
                 CastDate=$(date +"%s" -d @${NixDate[$i]})
-                #if [ $CastDate -le $TomorrowDate ]; then
-                    #ShortDate=$(date +"%R" -d @${NixDate[$i]})
-                    ShortDate=$(date +"%m/%d" -d @${NixDate[$i]})
-                    bob=$(printf "%s %-4s%-2s %-4s |" "$bob" "$ShortDate " "${ShortWeather[$i]}" "${temperature[$i]}°${degreeCharacter^^}")
-                #fi
+                CastHour=$(date +"%-H" -d @${NixDate[$i]})
+
+                if [ "$CastHour" -ge "$NowHigh" ] && [ "$CastHour" -le "$NowLow" ]; then
+                  ShortDate=$(date +"%m/%d" -d @${NixDate[$i]})
+                  bob=$(printf "%s %-4s%-2s %-4s |" "$bob" "$ShortDate " "${ShortWeather[$i]}" "${temperature[$i]}°${degreeCharacter^^}")
+                fi
                 i=$((i + 1))
             done
         #bob=$(echo "$icon $ShortWeather $temperature°${degreeCharacter^^}")
