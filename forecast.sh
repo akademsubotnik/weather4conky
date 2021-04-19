@@ -11,7 +11,6 @@ Terminal="True"
 degreeCharacter="c"
 data=0
 lastUpdateTime=0
-
 dynamicUpdates=0
 UseIcons="True"
 colors="True"
@@ -100,7 +99,6 @@ while true; do
             ShortWeather[$i]=$(echo $data | jq -r .list[$i].weather[] | jq -r .main | tr '\n' ' '| awk '{$1=$1};1' )
             LongWeather[$i]=$(echo $data | jq -r .list[$i].weather[] | jq -r .description | sed -E 's/\S+/\u&/g' | tr '\n' ' '| awk '{$1=$1};1' )
 
-            CloudCover[$i]=$(echo $data | jq -r .list[$i].clouds.all | tr '\n' ' '| awk '{$1=$1};1' )
 
 
 
@@ -152,12 +150,12 @@ while true; do
             CastDate=$(date +"%s" -d @${NixDate[$i]})
             if [ $CastDate -le $TomorrowDate ]; then
                 ShortDate=$(date +"%m/%d@%R" -d @${NixDate[$i]})
-                printf "${YELLOW}%-11s${RESTORE}: ${CYAN}%-2s%-16s${RESTORE} Temp:${CYAN}%-6s${RESTORE} Clouds:${GREEN}%-4s${RESTORE}\n" "$ShortDate" "${icon[$i]} " "${LongWeather[$i]}" "${temperature[$i]}°${degreeCharacter^^}" "${CloudCover[$i]}%"
+                printf "${YELLOW}%-11s${RESTORE}: ${CYAN}%-2s%-16s${RESTORE} Temp:${CYAN}%-6s${RESTORE} \n" "$ShortDate" "${icon[$i]} " "${LongWeather[$i]}" "${temperature[$i]}°${degreeCharacter^^}"
             else
                 CastHour=$(date +"%-H" -d @${NixDate[$i]})
                 if [ "$CastHour" -ge "$NowHigh" ] && [ "$CastHour" -le "$NowLow" ]; then
                     ShortDate=$(date +"%m/%d@%R" -d @${NixDate[$i]})
-                    printf "${RED}%-11s${RESTORE}: ${CYAN}%-2s%-16s${RESTORE} Temp:${CYAN}%-6s${RESTORE} Clouds:${GREEN}%-4s${RESTORE}\n" "$ShortDate" "${icon[$i]} " "${LongWeather[$i]}" "${temperature[$i]}°${degreeCharacter^^}" "${CloudCover[$i]}%"
+                    printf "${RED}%-11s${RESTORE}: ${CYAN}%-2s%-16s${RESTORE} Temp:${CYAN}%-6s${RESTORE} \n" "$ShortDate" "${icon[$i]} " "${LongWeather[$i]}" "${temperature[$i]}°${degreeCharacter^^}"
                 fi
             fi
             i=$((i + 1))
