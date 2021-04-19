@@ -122,7 +122,6 @@ while true; do
     NowHigh=$((NowHour - 1))
 
     if [ "$Conky" = "True" ]; then
-        if [ "$colors" = "True" ]; then
             let i=0
             bob=""
             while [ $i -lt 5 ]; do
@@ -133,9 +132,6 @@ while true; do
                 fi
                 i=$((i + 1))
             done
-
-        fi
-
         #bob=$(echo "$icon $ShortWeather $temperature°${degreeCharacter^^}")
         #bob
         echo "$bob"
