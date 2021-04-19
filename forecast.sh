@@ -145,15 +145,10 @@ while true; do
         let i=0
         while [ $i -lt 40 ]; do
             CastDate=$(date +"%s" -d @${NixDate[$i]})
-            if [ $CastDate -le $TomorrowDate ]; then
+            CastHour=$(date +"%-H" -d @${NixDate[$i]})
+            if [ "$CastHour" -ge "$NowHigh" ] && [ "$CastHour" -le "$NowLow" ]; then
                 ShortDate=$(date +"%m/%d@%R" -d @${NixDate[$i]})
-                printf "${YELLOW}%-11s${RESTORE}: ${CYAN}%-2s%-16s${RESTORE} Temp:${CYAN}%-6s${RESTORE} \n" "$ShortDate" "${icon[$i]} " "${LongWeather[$i]}" "${temperature[$i]}°${degreeCharacter^^}"
-            else
-                CastHour=$(date +"%-H" -d @${NixDate[$i]})
-                if [ "$CastHour" -ge "$NowHigh" ] && [ "$CastHour" -le "$NowLow" ]; then
-                    ShortDate=$(date +"%m/%d@%R" -d @${NixDate[$i]})
-                    printf "${RED}%-11s${RESTORE}: ${CYAN}%-2s%-16s${RESTORE} Temp:${CYAN}%-6s${RESTORE} \n" "$ShortDate" "${icon[$i]} " "${LongWeather[$i]}" "${temperature[$i]}°${degreeCharacter^^}"
-                fi
+                printf "${RED}%-11s${RESTORE}: ${CYAN}%-2s%-16s${RESTORE} Temp:${CYAN}%-6s${RESTORE} \n" "$ShortDate" "${icon[$i]} " "${LongWeather[$i]}" "${temperature[$i]}°${degreeCharacter^^}"
             fi
             i=$((i + 1))
         done
