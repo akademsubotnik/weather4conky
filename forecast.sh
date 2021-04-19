@@ -134,9 +134,7 @@ while true; do
                 fi
                 i=$((i + 1))
             done
-        #bob=$(echo "$icon $ShortWeather $temperature°${degreeCharacter^^}")
-        #bob
-        echo "$bob"
+        echo "$bob" #echo to stdout (to view results in terminal)
     fi
     if [ "$Terminal" = "True" ];then
         echo "Forecast for $Station as of: ${YELLOW}$AsOf${RESTORE} "
