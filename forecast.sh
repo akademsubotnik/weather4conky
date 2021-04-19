@@ -11,7 +11,7 @@ Terminal="True"
 degreeCharacter="c"
 data=0
 lastUpdateTime=0
-FeelsLike=0
+
 dynamicUpdates=0
 UseIcons="True"
 colors="True"
@@ -152,20 +152,12 @@ while true; do
             CastDate=$(date +"%s" -d @${NixDate[$i]})
             if [ $CastDate -le $TomorrowDate ]; then
                 ShortDate=$(date +"%m/%d@%R" -d @${NixDate[$i]})
-                if [ "$colors" = "True" ]; then
-                    printf "${YELLOW}%-11s${RESTORE}: ${CYAN}%-2s%-16s${RESTORE} Temp:${CYAN}%-6s${RESTORE} Clouds:${GREEN}%-4s${RESTORE}\n" "$ShortDate" "${icon[$i]} " "${LongWeather[$i]}" "${temperature[$i]}°${degreeCharacter^^}" "${CloudCover[$i]}%"
-                else
-                    printf "%-12s %-2s%-20s %-15s %-14s %-14s %-14s\n" "$ShortDate:" "${icon[$i]} " "${LongWeather[$i]}" "Temp:${temperature[$i]}°${degreeCharacter^^}" "Cloud Cover:${CloudCover[$i]}%"
-                fi
+                printf "${YELLOW}%-11s${RESTORE}: ${CYAN}%-2s%-16s${RESTORE} Temp:${CYAN}%-6s${RESTORE} Clouds:${GREEN}%-4s${RESTORE}\n" "$ShortDate" "${icon[$i]} " "${LongWeather[$i]}" "${temperature[$i]}°${degreeCharacter^^}" "${CloudCover[$i]}%"
             else
                 CastHour=$(date +"%-H" -d @${NixDate[$i]})
                 if [ "$CastHour" -ge "$NowHigh" ] && [ "$CastHour" -le "$NowLow" ]; then
                     ShortDate=$(date +"%m/%d@%R" -d @${NixDate[$i]})
-                    if [ "$colors" = "True" ]; then
-                        printf "${RED}%-11s${RESTORE}: ${CYAN}%-2s%-16s${RESTORE} Temp:${CYAN}%-6s${RESTORE} Clouds:${GREEN}%-4s${RESTORE}\n" "$ShortDate" "${icon[$i]} " "${LongWeather[$i]}" "${temperature[$i]}°${degreeCharacter^^}" "${CloudCover[$i]}%"
-                    else
-                        printf "%-12s %-2s%-20s %-15s %-14s %-14s %-14s\n" "$ShortDate:" "${icon[$i]} " "${LongWeather[$i]}" "Temp:${temperature[$i]}°${degreeCharacter^^}" "Cloud Cover:${CloudCover[$i]}%"
-                    fi
+                    printf "${RED}%-11s${RESTORE}: ${CYAN}%-2s%-16s${RESTORE} Temp:${CYAN}%-6s${RESTORE} Clouds:${GREEN}%-4s${RESTORE}\n" "$ShortDate" "${icon[$i]} " "${LongWeather[$i]}" "${temperature[$i]}°${degreeCharacter^^}" "${CloudCover[$i]}%"
                 fi
             fi
             i=$((i + 1))
