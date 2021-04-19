@@ -99,7 +99,7 @@ while true; do
             fi
             ShortWeather[$i]=$(echo $data | jq -r .list[$i].weather[] | jq -r .main | tr '\n' ' '| awk '{$1=$1};1' )
             LongWeather[$i]=$(echo $data | jq -r .list[$i].weather[] | jq -r .description | sed -E 's/\S+/\u&/g' | tr '\n' ' '| awk '{$1=$1};1' )
-            Humidity[$i]=$(echo $data | jq -r .list[$i].main.humidity | tr '\n' ' '| awk '{$1=$1};1' )
+
             CloudCover[$i]=$(echo $data | jq -r .list[$i].clouds.all | tr '\n' ' '| awk '{$1=$1};1' )
 
 
@@ -153,18 +153,18 @@ while true; do
             if [ $CastDate -le $TomorrowDate ]; then
                 ShortDate=$(date +"%m/%d@%R" -d @${NixDate[$i]})
                 if [ "$colors" = "True" ]; then
-                    printf "${YELLOW}%-11s${RESTORE}: ${CYAN}%-2s%-16s${RESTORE} Temp:${CYAN}%-6s${RESTORE} Humidity:${GREEN}%-4s${RESTORE} Clouds:${GREEN}%-4s${RESTORE}\n" "$ShortDate" "${icon[$i]} " "${LongWeather[$i]}" "${temperature[$i]}°${degreeCharacter^^}" "${Humidity[$i]}%" "${CloudCover[$i]}%"
+                    printf "${YELLOW}%-11s${RESTORE}: ${CYAN}%-2s%-16s${RESTORE} Temp:${CYAN}%-6s${RESTORE} Clouds:${GREEN}%-4s${RESTORE}\n" "$ShortDate" "${icon[$i]} " "${LongWeather[$i]}" "${temperature[$i]}°${degreeCharacter^^}" "${CloudCover[$i]}%"
                 else
-                    printf "%-12s %-2s%-20s %-15s %-14s %-14s %-14s\n" "$ShortDate:" "${icon[$i]} " "${LongWeather[$i]}" "Temp:${temperature[$i]}°${degreeCharacter^^}" "Humidity:${Humidity[$i]}%" "Cloud Cover:${CloudCover[$i]}%"
+                    printf "%-12s %-2s%-20s %-15s %-14s %-14s %-14s\n" "$ShortDate:" "${icon[$i]} " "${LongWeather[$i]}" "Temp:${temperature[$i]}°${degreeCharacter^^}" "Cloud Cover:${CloudCover[$i]}%"
                 fi
             else
                 CastHour=$(date +"%-H" -d @${NixDate[$i]})
                 if [ "$CastHour" -ge "$NowHigh" ] && [ "$CastHour" -le "$NowLow" ]; then
                     ShortDate=$(date +"%m/%d@%R" -d @${NixDate[$i]})
                     if [ "$colors" = "True" ]; then
-                        printf "${RED}%-11s${RESTORE}: ${CYAN}%-2s%-16s${RESTORE} Temp:${CYAN}%-6s${RESTORE} Humidity:${GREEN}%-4s${RESTORE} Clouds:${GREEN}%-4s${RESTORE}\n" "$ShortDate" "${icon[$i]} " "${LongWeather[$i]}" "${temperature[$i]}°${degreeCharacter^^}" "${Humidity[$i]}%" "${CloudCover[$i]}%"
+                        printf "${RED}%-11s${RESTORE}: ${CYAN}%-2s%-16s${RESTORE} Temp:${CYAN}%-6s${RESTORE} Clouds:${GREEN}%-4s${RESTORE}\n" "$ShortDate" "${icon[$i]} " "${LongWeather[$i]}" "${temperature[$i]}°${degreeCharacter^^}" "${CloudCover[$i]}%"
                     else
-                        printf "%-12s %-2s%-20s %-15s %-14s %-14s %-14s\n" "$ShortDate:" "${icon[$i]} " "${LongWeather[$i]}" "Temp:${temperature[$i]}°${degreeCharacter^^}" "Humidity:${Humidity[$i]}%" "Cloud Cover:${CloudCover[$i]}%"
+                        printf "%-12s %-2s%-20s %-15s %-14s %-14s %-14s\n" "$ShortDate:" "${icon[$i]} " "${LongWeather[$i]}" "Temp:${temperature[$i]}°${degreeCharacter^^}" "Cloud Cover:${CloudCover[$i]}%"
                     fi
                 fi
             fi
